@@ -4,6 +4,8 @@
 # LTS
 
 <!-- badges: start -->
+
+![Check](https://github.com/lorentzben/LTS/actions/workflows/r.yml/badge.svg)
 <!-- badges: end -->
 
 The goal of LTS is to package and extend functions useful for
