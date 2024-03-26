@@ -6,6 +6,7 @@
 <!-- badges: start -->
 
 ![Check](https://github.com/lorentzben/LTS/actions/workflows/r.yml/badge.svg)
+[![R-CMD-check](https://github.com/lorentzben/LTS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/lorentzben/LTS/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of LTS is to package and extend functions useful for
