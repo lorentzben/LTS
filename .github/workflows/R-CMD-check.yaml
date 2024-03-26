@@ -23,6 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages(c("renv","devtools"))
+        shell: Rscript {0}
       - uses: r-lib/actions/setup-renv@v2
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
