@@ -31,11 +31,13 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
 
-      - uses: r-lib/actions/setup-renv@v2
+
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE)
+
+      - uses: r-lib/actions/setup-renv@v2
 
         shell: Rscript {0}
       - name: Check

@@ -11,14 +11,14 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/lorentzben/LTS
 BugReports: https://github.com/lorentzben/LTS/issues
-Suggests: 
-    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 RoxygenNote: 7.3.1
 Imports: 
+    devtools,
     dplyr,
     lubridate,
     purrr,
+    testthat,
     tidyr,
     tsibble,
     zoo
