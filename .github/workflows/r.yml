@@ -31,7 +31,7 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
 
-      - uses: r-lib/actions/setup-renv@v3
+      - uses: r-lib/actions/setup-renv@v2
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
