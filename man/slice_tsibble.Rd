@@ -21,7 +21,7 @@ select Tsibble between timepoints given (used to get contiguous time series of r
 }
 \examples{
 subzone <- c("Middle","Middle","Middle","Top")
-datetime <- c("2021-03-21 T23:13:00","2021-03-21 T23:12:00","2021-03-21 T23:11:00","2021-03-21 T23:10:00")
+datetime <- c("2021-03-21 T23:13:00","2021-03-21 T23:12:00", "2021-03-21 T23:11:00","2021-03-21 T23:10:00")
 LegBand <- c(6992,6992,6992,6992)
 record_table <- data.frame(cbind(subzone,datetime,LegBand))
 colnames(record_table) <- c('subzone','datetime','LegBand')

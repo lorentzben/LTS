@@ -33,5 +33,8 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(LTS)
-## basic example code
+
+de_duplicated_record_table <- identify_duplicate_records(record_table)
+slice_tsibble(record_table, begin, end)
+my_ymd_hms(date_1)
 ```
