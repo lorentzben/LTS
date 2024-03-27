@@ -29,7 +29,7 @@ my_ymd_hms <- function(...){
 
       # date_char <- paste0(year,"/",month,"/",day," ",hour,":",minute,":",second)
       # parsed <-  format(as.POSIXct(date_char, tz="UTC"), format="%Y-%m-%d %H:%M:%S")
-      parsed <- as.numeric(date)
+      parsed <- as.numeric(...)
       return(parsed)
     }
 
