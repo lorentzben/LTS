@@ -1,6 +1,6 @@
 #' Midnight Aware YMD-HMS formatting
 #'
-#' @param date year-month-date T hour:minute:second date
+#' @inheritParams lubridate::ymd_hms
 #'
 #' @return a numerically formatted datetime
 #' @export
@@ -10,12 +10,12 @@
 #' date_2 <- "2021-03-15 T00:00:00"
 #' my_ymd_hms(date_1)
 #' my_ymd_hms(date_2)
-my_ymd_hms <- function(date){
-  require("lubridate")
+my_ymd_hms <- function(...){
+  requireNamespace("lubridate")
 
   tryCatch(
     {
-      parsed <- lubridate::ymd_hms(date)
+      parsed <- lubridate::ymd_hms(...)
       return(parsed)
     },
     warning=function(w) {

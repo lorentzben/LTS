@@ -4,10 +4,11 @@
 \alias{my_ymd_hms}
 \title{Midnight Aware YMD-HMS formatting}
 \usage{
-my_ymd_hms(date)
+my_ymd_hms(...)
 }
 \arguments{
-\item{date}{year-month-date T hour:minute:second date}
+\item{...}{a character vector of dates in year, month, day, hour, minute,
+second format}
 }
 \value{
 a numerically formatted datetime
