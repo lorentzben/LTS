@@ -103,10 +103,9 @@ test_that("check slice_tsibble for cutoffs outside table", {
   d1t0_struct <- d1t0 |> nest(data = - tagname) |>
     na.exclude() |>
     mutate(tsibble = map(data, ~tsibble(datetime = ymd_hms(.x$accessdate), value = .x$subzone, index = datetime) ))
-print("TODO check that the actual table is returned")
+
   expect_warning(d1t0_all_analysis <- d1t0_struct |>
     mutate(slicedTsibble = map(tsibble, ~ slice_tsibble(.x,  "2021-03-20 T12:43:00","2021-03-23 T19:56:00"))))
-
 })
 
 test_that("check slice_tsibble - d1t0 explicit params", {
