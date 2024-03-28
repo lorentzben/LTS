@@ -4,10 +4,14 @@
 \alias{identify_duplicate_records}
 \title{perform sliding window analysis to remove transitions into current zone}
 \usage{
-identify_duplicate_records(records)
+identify_duplicate_records(records, datetime = "accessdate", value = "subzone")
 }
 \arguments{
 \item{records}{tibble with colnamed subzone}
+
+\item{datetime}{String colname containing epoch formatted datetime}
+
+\item{value}{String colname containing factor of interest}
 }
 \value{
 de-duplicated transtion record table
@@ -24,5 +28,5 @@ record_table <- data.frame(cbind(subzone,accessdate,LegBand))
 colnames(record_table) <- c('subzone','accessdate','LegBand')
 record_table <- dplyr::tibble(record_table)
 
-de_duplicated_record_table <- identify_duplicate_records(record_table)
+de_duplicated_record_table <- identify_duplicate_records(record_table,datetime="accessdate",value="subzone")
 }

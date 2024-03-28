@@ -4,7 +4,7 @@
 \alias{slice_tsibble}
 \title{select Tsibble between timepoints given (used to get contiguous time series of records)}
 \usage{
-slice_tsibble(data, start, stop)
+slice_tsibble(data, start, stop, datetime = "datetime")
 }
 \arguments{
 \item{data}{Tsibble with data between start and stop}
@@ -12,6 +12,8 @@ slice_tsibble(data, start, stop)
 \item{start}{A lubridate::ymd() formatted datetime}
 
 \item{stop}{A lubridate::ymd() formatted datetime}
+
+\item{datetime}{String that is the columnname where the ymd_hms formatted datetime is}
 }
 \value{
 a sliced Tsibble for values between start and stop
@@ -22,12 +24,13 @@ select Tsibble between timepoints given (used to get contiguous time series of r
 \examples{
 subzone <- c("Middle","Middle","Middle","Top")
 datetime <- c("2021-03-21 T23:13:00","2021-03-21 T23:12:00", "2021-03-21 T23:11:00","2021-03-21 T23:10:00")
+accessdate <- c("2021-03-21 T23:13:00","2021-03-21 T23:12:00", "2021-03-21 T23:11:00","2021-03-21 T23:10:00")
 LegBand <- c(6992,6992,6992,6992)
-record_table <- data.frame(cbind(subzone,datetime,LegBand))
-colnames(record_table) <- c('subzone','datetime','LegBand')
+record_table <- data.frame(cbind(subzone,datetime,accessdate,LegBand))
+colnames(record_table) <- c('subzone','datetime','accessdate','LegBand')
 record_table <- dplyr::tibble(record_table)
-end <- "2021-05-07 T18:30:30"
-begin <- "2021-05-07 T18:24:10"
+begin <- "2021-03-21 T23:10:00"
+end <- "2021-03-21 T23:12:00"
 
-slice_tsibble(record_table, begin, end)
+slice_tsibble(record_table, start=begin, stop=end)
 }
