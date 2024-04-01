@@ -39,5 +39,5 @@ test_that("test nice start - d1t0 ", {
     mutate(near_5 = map(slicedTsibble, ~ nice_start(.x, "5 seconds",5/60,datetime="datetime")))
 
   # TODO determine how to check equality
-  expect_equal(1,1)
+  expect_equal(lubridate::second(d1t0_regular$near_5[[1]][["datetime"]][1]),5)
 })
