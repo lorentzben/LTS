@@ -1,6 +1,12 @@
 test_that("get time budget prop works", {
   library(zoo)
   library(purrr)
+  library(dplyr)
+  library(tidyr)
+  library(lubridate)
+  library(purrr)
+  library(tsibble)
+
   d1t0 <- read.csv("../data/one_day_zero_trans_r2.csv")
 
   bird_ids_d1t0 <- unique(d1t0$tagname)
@@ -24,7 +30,7 @@ test_that("get time budget prop works", {
   sum(is.na(d1t0$subzone))
 
   # This is a hack to work with the downloaded data from excel and onedrive
-  d1t0$accessdate <- ymd_hms(d1t0$DateTime)
+  d1t0$accessdate <- lubridate::ymd_hms(d1t0$DateTime)
 
   # TODO change this block to remove the duplicate check
   d1t0_struct <- d1t0 |> nest(data = - tagname) |>
