@@ -38,4 +38,6 @@ de_duplicated_record_table <- identify_duplicate_records(record_table)
 slice_tsibble(record_table, begin, end)
 my_ymd_hms(date_1)
 nice_start()
+time_to_intervals()
+get_time_budget_prop()
 ```
