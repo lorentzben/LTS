@@ -7,8 +7,24 @@
 time_to_intervals(data)
 }
 \arguments{
-\item{data}{}
+\item{data}{tsibble to be turned into a interval table}
+}
+\value{
+interval table where nrows is equal to number of transitions + 1
 }
 \description{
 Function to turn time table into interval table, handles case of 0,1,2,...n transitions
+}
+\examples{
+columns <- c("datetime", "value")
+row1 <- c("2021-03-21 12:15:05", "bottom")
+row2 <- c("2021-03-21 12:15:10", "bottom")
+row3 <- c("2021-03-21 12:15:15", "bottom")
+row4 <- c("2021-03-21 12:15:20", "bottom")
+row5 <- c("2021-03-21 12:15:25", "bottom")
+row6 <- c("2021-03-21 12:15:30", "bottom")
+data <- data.frame(rbind(row1,row2,row3,row4,row5,row6))
+colnames(data) <- columns
+time_to_intervals(data)
+
 }

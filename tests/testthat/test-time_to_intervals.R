@@ -1,4 +1,4 @@
-test_that("multiplication works", {
+test_that("test d1t0 has a length of 1 (0 trans)", {
   library(zoo)
   library(dplyr)
   library(tidyr)
