@@ -18,7 +18,7 @@
 #' time_to_intervals(data)
 #'
 time_to_intervals <- function(data){
-  require(dplyr)
+  requireNamespace("dplyr")
 
   interval_table <- data.frame()
 

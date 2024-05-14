@@ -16,6 +16,7 @@ RoxygenNote: 7.3.1
 Imports: 
     devtools,
     dplyr,
+    hms,
     lubridate,
     purrr,
     testthat,

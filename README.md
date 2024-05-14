@@ -40,4 +40,5 @@ my_ymd_hms(date_1)
 nice_start()
 time_to_intervals()
 get_time_budget_prop()
+get_day_records()
 ```
