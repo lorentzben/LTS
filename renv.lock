@@ -439,6 +439,21 @@
       ],
       "Hash": "8eb36c8125038e648e5d111c0d7b2ed4"
     },
+    "hms": {
+      "Package": "hms",
+      "Version": "1.1.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "ellipsis",
+        "lifecycle",
+        "methods",
+        "pkgconfig",
+        "rlang",
+        "vctrs"
+      ],
+      "Hash": "e4bf161ccb74a2c1c0e8ac63bbe332b4"
+    },
     "htmltools": {
       "Package": "htmltools",
       "Version": "0.5.7",
