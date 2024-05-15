@@ -116,11 +116,8 @@ test_that("get day records breaks if no seconds", {
 
   Interval <- c(ymd_hms(as.POSIXct.numeric(as.numeric(head(d1t0_overall_interval$interval[[1]],n=1)$t1),origin=origin)),ymd_hms(as.POSIXct.numeric(as.numeric(tail(d1t0_overall_interval$interval[[1]],n=1)$t2),origin=origin)))
 
-
-  # TODO change the code to be slicedTsibble as opposed to sampled
   d1t0_all_room_day <- d1t0_overall_interval |>
     mutate(day = map(slicedTsibble, ~ expect_error(get_day_records(.x,"04:00","22:00"))))
-  # check n day records
 
 })
 
