@@ -49,7 +49,7 @@ test_that("get day records works", {
     unnest(tb)
 
   d1t0_overall_tb <- d1t0_all_room_time_budget |>
-    select("Interval.1.", "Interval.2.", "X1", "X2", "X3")
+    select("Interval.1.", "Interval.2.", "bottom", "middle", "top")
 
   Interval <- c(ymd_hms(as.POSIXct.numeric(as.numeric(head(d1t0_overall_interval$interval[[1]],n=1)$t1),origin=origin)),ymd_hms(as.POSIXct.numeric(as.numeric(tail(d1t0_overall_interval$interval[[1]],n=1)$t2),origin=origin)))
 
@@ -112,7 +112,7 @@ test_that("get day records breaks if no seconds", {
     unnest(tb)
 
   d1t0_overall_tb <- d1t0_all_room_time_budget |>
-    select("Interval.1.", "Interval.2.", "X1", "X2", "X3")
+    select("Interval.1.", "Interval.2.", "bottom", "middle", "top")
 
   Interval <- c(ymd_hms(as.POSIXct.numeric(as.numeric(head(d1t0_overall_interval$interval[[1]],n=1)$t1),origin=origin)),ymd_hms(as.POSIXct.numeric(as.numeric(tail(d1t0_overall_interval$interval[[1]],n=1)$t2),origin=origin)))
 

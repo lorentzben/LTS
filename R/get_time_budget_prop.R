@@ -34,6 +34,7 @@ get_time_budget_prop <- function(data,value,options,n_opts) {
     TBtop<-sum(TBStag[which(TBStag$to_zone == "top"),]$t)/sum(TBStag$t)
 
     TBS<-matrix(c(TBbot,TBmid,TBtop),ncol=3)
+    colnames(TBS) <- c("bottom","middle","top")
 
     return(data.frame(Interval[1],Interval[2],TBS))
 
@@ -50,6 +51,7 @@ get_time_budget_prop <- function(data,value,options,n_opts) {
     TBtop<-sum(TBStag[which(TBStag$zone == "top"),]$t)/sum(TBStag$t)
 
     TBS<-matrix(c(TBbot,TBmid,TBtop),ncol=3)
+    colnames(TBS) <- c("bottom","middle","top")
 
     return(data.frame(Interval[1],Interval[2],TBS))
   } else if(all.equal(colnames(data),c("t1","t2",value))){

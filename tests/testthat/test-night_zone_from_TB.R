@@ -1,4 +1,4 @@
-test_that("get time budget prop works", {
+test_that("night_zone_from_TB works", {
   library(zoo)
   library(purrr)
   library(dplyr)
@@ -6,31 +6,22 @@ test_that("get time budget prop works", {
   library(lubridate)
   library(purrr)
   library(tsibble)
+  library(hms)
 
   d1t0 <- read.csv("../data/one_day_zero_trans_r2.csv")
-
   bird_ids_d1t0 <- unique(d1t0$tagname)
   bird_ids_d1t0 <- na.trim(sort(bird_ids_d1t0))
 
   d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="GMT")
 
-  print("what makes up subzone col")
-  unique(d1t0$subzone)
 
   d1t0$subzone[d1t0$subzone == "Bottom"] <- "bottom"
   d1t0$subzone[d1t0$subzone == "Middle"] <- "middle"
   d1t0$subzone[d1t0$subzone == "Top"] <- "top"
 
 
-  print("what makes up subzone col")
-  unique(d1t0$subzone)
-
-  print("how many NAs in DateTime and Subzone")
-  sum(is.na(d1t0$DateTime))
-  sum(is.na(d1t0$subzone))
-
   # This is a hack to work with the downloaded data from excel and onedrive
-  d1t0$accessdate <- lubridate::ymd_hms(d1t0$DateTime)
+  d1t0$accessdate <- ymd_hms(d1t0$DateTime)
 
   # TODO change this block to remove the duplicate check
   d1t0_struct <- d1t0 |> nest(data = - tagname) |>
@@ -62,11 +53,23 @@ test_that("get time budget prop works", {
 
   Interval <- c(ymd_hms(as.POSIXct.numeric(as.numeric(head(d1t0_overall_interval$interval[[1]],n=1)$t1),origin=origin)),ymd_hms(as.POSIXct.numeric(as.numeric(tail(d1t0_overall_interval$interval[[1]],n=1)$t2),origin=origin)))
 
-  # check overall time budget
-  expected_res <- tibble(data.frame(Interval[1],Interval[2],matrix(c(1,0,0), ncol=3)))
-  names(expected_res) <-c("Interval.1.", "Interval.2.", "bottom", "middle", "top")
 
-  # check that time budget says that it spent 100% in bottom
-  expect_equal(d1t0_overall_tb, expected_res, label='d1t0 overall time budget')
+  # TODO change the code to be slicedTsibble as opposed to sampled
+  d1t0_all_room_day <- d1t0_overall_interval |>
+    mutate(day = map(slicedTsibble, ~ get_day_records(.x,"04:00:00","22:00:00"))) |>
+    mutate(night = map(slicedTsibble, ~ get_night_records(.x,"04:00:00","22:00:00")))
+
+  night_tb <- d1t0_all_room_day |>
+    mutate(interval = map(night, ~time_to_intervals(.x))) |>
+    mutate(data = map(interval, ~ get_time_budget_prop(.x)))
+
+  night_nest <- night_tb |>
+    mutate(nest = map(data, ~night_zone_from_TB(.x))) |>
+    unnest(nest)
+
+  print("Where does this bird nest at night: ")
+  res <- sort(table(night_nest$nest),decreasing=T)
+
+  expect_equal(names(res[2]),"bottom")
 
 })
