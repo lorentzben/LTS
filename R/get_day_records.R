@@ -41,13 +41,13 @@ get_day_records <- function(data, start, end){
 
   day <- data[data$day == TRUE,]
 
-  day$date <- lubridate::ymd(day$datetime)
+  day$date <- lubridate::date(day$datetime)
 
   date_to_day <- data.frame(cbind(unique(day$date),1:length(unique(day$date))))
 
   colnames(date_to_day) <- c('datetime','dos')
 
-  day$dos <- as.numeric(date_to_day[match(lubridate::ymd(day$datetime), date_to_day$datetime),2])
+  day$dos <- as.numeric(date_to_day[match(lubridate::date(day$datetime), date_to_day$datetime),2])
 
   # I modified this from "%-V" to "%V" so if there is an issue you can revert.
   week_offset <- as.numeric(lubridate::week(day$datetime)[1])
