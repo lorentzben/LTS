@@ -39,13 +39,13 @@ get_night_records <- function(data, start, end){
     }
   )
 
-  first_day_of_study <- lubridate::ymd(data[1]$datetime)
+  first_day_of_study <- lubridate::date(data[1]$datetime)
 
   data$day <- (hms::as_hms(lubridate::ymd_hms(data$datetime)) >= lubridate::hms(start) & hms::as_hms(lubridate::ymd_hms(data$datetime)) < lubridate::hms(end))
 
   night <- data[data$day != TRUE,]
 
-  night$date <- lubridate::ymd(night$datetime)
+  night$date <- lubridate::date(night$datetime)
 
   night_dates <- c(first_day_of_study, night$date)
 
@@ -54,8 +54,8 @@ get_night_records <- function(data, start, end){
   colnames(date_to_day) <- c('datetime','dos')
 
   night$dos <- ifelse(lubridate::hour(night$datetime) %in% 0:(lubridate::hour(lubridate::hms(start))-1) ,
-                      as.numeric(date_to_day[match(lubridate::ymd(night$datetime), date_to_day$datetime),2])-1,
-                      as.numeric(date_to_day[match(lubridate::ymd(night$datetime), date_to_day$datetime),2]))
+                      as.numeric(date_to_day[match(lubridate::date(night$datetime), date_to_day$datetime),2])-1,
+                      as.numeric(date_to_day[match(lubridate::date(night$datetime), date_to_day$datetime),2]))
 
 
   week_offset <- as.numeric(lubridate::week(night$datetime)[1])
