@@ -60,7 +60,7 @@ test_that("get time budget prop works", {
   d1t0_overall_tb <- d1t0_all_room_time_budget |>
     select("Interval.1.", "Interval.2.", "bottom", "middle", "top")
 
-  Interval <- c(ymd_hms(as.POSIXct.numeric(as.numeric(head(d1t0_overall_interval$interval[[1]],n=1)$t1),origin=origin)),ymd_hms(as.POSIXct.numeric(as.numeric(tail(d1t0_overall_interval$interval[[1]],n=1)$t2),origin=origin)))
+  Interval <- c(as.POSIXct.numeric(as.numeric(head(d1t0_overall_interval$interval[[1]],n=1)$t1),origin=origin),as.POSIXct.numeric(as.numeric(tail(d1t0_overall_interval$interval[[1]],n=1)$t2),origin=origin))
 
   # check overall time budget
   expected_res <- tibble(data.frame(Interval[1],Interval[2],matrix(c(1,0,0), ncol=3)))
