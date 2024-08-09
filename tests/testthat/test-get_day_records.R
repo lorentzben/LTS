@@ -12,7 +12,7 @@ test_that("get day records works", {
   bird_ids_d1t0 <- unique(d1t0$tagname)
   bird_ids_d1t0 <- na.trim(sort(bird_ids_d1t0))
 
-  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="GMT")
+  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="UTC")
 
 
   d1t0$subzone[d1t0$subzone == "Bottom"] <- "bottom"
@@ -75,7 +75,7 @@ test_that("get day records breaks if no seconds", {
   bird_ids_d1t0 <- unique(d1t0$tagname)
   bird_ids_d1t0 <- na.trim(sort(bird_ids_d1t0))
 
-  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="GMT")
+  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="UTC")
 
 
   d1t0$subzone[d1t0$subzone == "Bottom"] <- "bottom"

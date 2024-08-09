@@ -12,7 +12,7 @@ test_that("get time budget prop works", {
   bird_ids_d1t0 <- unique(d1t0$tagname)
   bird_ids_d1t0 <- na.trim(sort(bird_ids_d1t0))
 
-  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="GMT")
+  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="UTC")
 
   print("what makes up subzone col")
   unique(d1t0$subzone)
@@ -60,7 +60,7 @@ test_that("get time budget prop works", {
   d1t0_overall_tb <- d1t0_all_room_time_budget |>
     select("Interval.1.", "Interval.2.", "bottom", "middle", "top")
 
-  Interval <- c(as.POSIXct.numeric(as.numeric(head(d1t0_overall_interval$interval[[1]],n=1)$t1),origin=origin),as.POSIXct.numeric(as.numeric(tail(d1t0_overall_interval$interval[[1]],n=1)$t2),origin=origin))
+  Interval <- c(as.POSIXct.numeric(as.numeric(head(d1t0_overall_interval$interval[[1]],n=1)$t1),origin=origin,tz="UTC"),as.POSIXct.numeric(as.numeric(tail(d1t0_overall_interval$interval[[1]],n=1)$t2),origin=origin,tz="UTC"))
 
   # check overall time budget
   expected_res <- tibble(data.frame(Interval[1],Interval[2],matrix(c(1,0,0), ncol=3)))

@@ -11,7 +11,7 @@ test_that("test d1t0 has a length of 1 (0 trans)", {
   bird_ids_d1t0 <- unique(d1t0$tagname)
   bird_ids_d1t0 <- na.trim(sort(bird_ids_d1t0))
 
-  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="GMT")
+  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="UTC")
 
 
   d1t0$subzone[d1t0$subzone == "Bottom"] <- "bottom"

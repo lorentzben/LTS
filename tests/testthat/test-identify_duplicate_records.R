@@ -13,7 +13,7 @@ test_that("test identify duplicate records with id_dupes-R3.csv - Explicit param
   bird_ids_dupe <- unique(dupe$tagname)
   bird_ids_dupe <- na.trim(sort(bird_ids_dupe))
 
-  dupe["DateTime"] <- as.POSIXct(dupe$access, origin="1970-01-01", tz="GMT")
+  dupe["DateTime"] <- as.POSIXct(dupe$access, origin="1970-01-01", tz="UTC")
 
 
   unique(dupe$subzone)
@@ -64,7 +64,7 @@ test_that("test identify duplicate records with id_dupes-R3.csv - Implied params
   bird_ids_dupe <- unique(dupe$tagname)
   bird_ids_dupe <- na.trim(sort(bird_ids_dupe))
 
-  dupe["DateTime"] <- as.POSIXct(dupe$access, origin="1970-01-01", tz="GMT")
+  dupe["DateTime"] <- as.POSIXct(dupe$access, origin="1970-01-01", tz="UTC")
 
 
   unique(dupe$subzone)

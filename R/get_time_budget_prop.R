@@ -25,7 +25,7 @@ get_time_budget_prop <- function(data,value,options,n_opts) {
   if(all.equal(colnames(data),c("t1","t2","from_zone","to_zone"))){
     # store interval as minutes
     TBStag<- data.frame(t = (as.numeric(data$t2) - as.numeric(data$t1)) / 60, to_zone=data$to_zone)
-    Interval <- c(as.POSIXct.numeric(as.numeric(utils::head(data,n=1)$t1),origin="1970-01-01"),as.POSIXct.numeric(as.numeric(utils::tail(data,n=1)$t2),origin="1970-01-01"))
+    Interval <- c(as.POSIXct.numeric(as.numeric(utils::head(data,n=1)$t1),origin="1970-01-01",tz="UTC"),as.POSIXct.numeric(as.numeric(utils::tail(data,n=1)$t2),origin="1970-01-01",tz="UTC"))
 
     TBbot<-sum(TBStag[which(TBStag$to_zone == "bottom"),]$t)/sum(TBStag$t)
 
@@ -42,7 +42,7 @@ get_time_budget_prop <- function(data,value,options,n_opts) {
     # store interval as minutes
     TBStag<- data.frame(t = (as.numeric(data$t2) - as.numeric(data$t1)) / 60, zone=data$zone)
 
-    Interval <- c(as.POSIXct.numeric(as.numeric(utils::head(data,n=1)$t1),origin="1970-01-01"),as.POSIXct.numeric(as.numeric(utils::tail(data,n=1)$t2),origin="1970-01-01"))
+    Interval <- c(as.POSIXct.numeric(as.numeric(utils::head(data,n=1)$t1),origin="1970-01-01",tz="UTC"),as.POSIXct.numeric(as.numeric(utils::tail(data,n=1)$t2),origin="1970-01-01",tz="UTC"))
 
     TBbot<-sum(TBStag[which(TBStag$zone == "bottom"),]$t)/sum(TBStag$t)
 
@@ -59,7 +59,7 @@ get_time_budget_prop <- function(data,value,options,n_opts) {
     #TODO figure out how to generalize this
     TBStag<- data.frame(t = (as.numeric(data$t2) - as.numeric(data$t1)) / 60, zone=data[[value]])
 
-    Interval <- c(as.POSIXct.numeric(as.numeric(utils::head(data,n=1)$t1),origin="1970-01-01"),as.POSIXct.numeric(as.numeric(utils::tail(data,n=1)$t2),origin="1970-01-01"))
+    Interval <- c(as.POSIXct.numeric(as.numeric(utils::head(data,n=1)$t1),origin="1970-01-01",tz="UTC"),as.POSIXct.numeric(as.numeric(utils::tail(data,n=1)$t2),origin="1970-01-01",tz="UTC"))
     for(i in 1:n_opts){
       TBopts[i] <- sum(TBStag[which(TBStag[[value]] == options[i]),]$t)/sum(TBStag$t)
     }

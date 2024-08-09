@@ -4,7 +4,7 @@ test_that("test nice start - d1t0 ", {
   bird_ids_d1t0 <- unique(d1t0$tagname)
   bird_ids_d1t0 <- na.trim(sort(bird_ids_d1t0))
 
-  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="GMT")
+  d1t0["DateTime"] <- as.POSIXct(d1t0$access, origin="1970-01-01", tz="UTC")
 
   print("what makes up subzone col")
   unique(d1t0$subzone)
